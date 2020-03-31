@@ -1,0 +1,51 @@
+---
+# tasks file for general-configs
+- name: Configuring Banner
+  ios_banner:
+    banner: login
+    text: | 
+                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                +                                                                         +
+                +                                                                         +
+                +                          ###  COMPANY   ###                             +
+                +                                                                         +
+                +             ACESSO PERMITIDO SOMENTE A PESSOAS AUTORIZADAS              +
+                +         TODAS AS CONEXOES ESTAO SENDO MONITORADAS E AUDITADAS           +
+                +                                                                         +
+                +                  ATTENTION: AUTHORIZED PERSONAL ONLY.                   +
+                +                    IF YOU ARE NOT AUTHORIZED PERSONAL                   +
+                +                        "DISCONNECT IMMEDIATELY".                        +
+                +                                                                         +
+                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+- name: Enabling SSH Protocol to remote connection
+  ios_config:
+    lines:
+      - transport input ssh
+    parents: line vty 5 15
+- name: Enabling service password-encryption
+  ios_config:
+    lines:
+      - service password-encryption
+- name: Configuring time properties
+  ios_config:
+    lines:
+      - service timestamps log datetime localtime
+      - service timestamps debug datetime localtime
+      - ntp server 10.10.10.10
+      - clock timezone BRA -3 0
+- name: Configurando Dominio
+  ios_config:
+    lines:
+      - no ip domain lookup
+      - ip domain-name xpto.br
+- name: Configuring HTTP Server
+  ios_config:
+    lines:
+      - ip http server
+      - ip http authentication local
+      - ip http secure-server
+- name: Saving configurations
+  ios_command:
+    commands:
+      - wr  
+...

@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Vinicius A Santos // Github vinealvees
+  description: This role setting some basics configures at Cisco Switch like Banner, SSH, Password Encryption, Time, Domain and HTTP Server.
+  license: license (GPL-2.0-or-later, MIT, etc)
+  min_ansible_version: 2.9
+  galaxy_tags:
+    cisco
+    ios
+    banner
+    ssh
+    password
+    encryption
+    timezone
+    domain
+    http
